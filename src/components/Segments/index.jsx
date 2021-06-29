@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import segments from "../../utils/segments";
 
 const listVariant = {
   hidden: { opacity: 1, scale: 0 },
@@ -8,8 +9,8 @@ const listVariant = {
     opacity: 1,
     scale: 1,
     transition: {
-      delayChildren: 0.6,
-      staggerChildren: 0.3,
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -33,6 +34,8 @@ const Wrapper = styled(motion.ul)`
   width: 100%;
   max-width: 700px;
   flex-shrink: 0;
+  margin-top: 20px;
+  margin-bottom: 60px;
 
   li {
     width: 100%;
@@ -42,7 +45,7 @@ const Wrapper = styled(motion.ul)`
 
 const Button = styled(motion.button)`
   width: 100%;
-  height: 80px;
+  height: 60px;
   background: transparent;
   border: 1px solid #fff;
   border-radius: 6px;
@@ -73,57 +76,16 @@ const Button = styled(motion.button)`
 
 const Segments = ({ value, setValue }) => {
   const setSocialMedia = (value) => setValue(value);
-  const segments = [
-    {
-      id: "healthcare",
-      label: "Saúde",
-    },
-    {
-      id: "media",
-      label: "Imprensa",
-    },
-    {
-      id: "education",
-      label: "Educação",
-    },
-    {
-      id: "nonprofit",
-      label: "ONGs",
-    },
-    {
-      id: "restaurants",
-      label: "Restaurantes",
-    },
-    {
-      id: "tech",
-      label: "Tecnologia",
-    },
-    {
-      id: "travel",
-      label: "Turismo",
-    },
-    {
-      id: "finances",
-      label: "Finanças",
-    },
-    {
-      id: "hospitality",
-      label: "Hospedaria",
-    },
-    {
-      id: "others",
-      label: "Outros",
-    },
-  ];
+
   return (
     <Wrapper variants={listVariant} initial="hidden" animate="visible">
-      {segments.map((segment) => (
-        <motion.li variants={listItemVariant}>
+      {segments.map(({ id, label }) => (
+        <motion.li key={id} variants={listItemVariant}>
           <Button
-            active={value === segment.id}
-            onClick={() => setSocialMedia(segment.id)}
+            active={value === id}
+            onClick={() => setSocialMedia(id)}
           >
-            <p>{segment.label}</p>
+            <p>{label}</p>
           </Button>
         </motion.li>
       ))}

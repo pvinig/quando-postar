@@ -1,3 +1,5 @@
+import days from "./days";
+
 const suggestedHours = {
   others: {
     facebook: {
@@ -22,6 +24,16 @@ const suggestedHours = {
       thursday: ["10:00"],
     },
   },
+};
+
+export const getSuggestedHours = (socialMedia, segment) => {
+  const key = suggestedHours[segment] ? segment : "others";
+  const hours = suggestedHours[key][socialMedia];
+  const response = Object.keys(hours).map((day) => ({
+    day: days[day],
+    hours: hours[day],
+  }));
+  return response;
 };
 
 export default suggestedHours;

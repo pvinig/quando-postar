@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
-import { SiTiktok } from "react-icons/si";
-import { BsThreeDots } from "react-icons/bs";
 import { motion } from "framer-motion";
+import socialMedias from "../../utils/socialMedias";
 
 const listVariant = {
   hidden: { opacity: 1, scale: 0 },
@@ -33,6 +31,8 @@ const Wrapper = styled(motion.ul)`
   width: 100%;
   max-width: 700px;
   flex-shrink: 0;
+  margin-top: 30px;
+  margin-bottom: 40px;
 
   li {
     width: 100%;
@@ -42,7 +42,7 @@ const Wrapper = styled(motion.ul)`
 
 const Button = styled(motion.button)`
   width: 100%;
-  height: 120px;
+  height: 110px;
   background: transparent;
   border: 1px solid #fff;
   border-radius: 6px;
@@ -76,51 +76,17 @@ const SocialMedias = ({ value, setValue }) => {
 
   return (
     <Wrapper variants={listVariant} initial="hidden" animate="visible">
-      <motion.li variants={listItemVariant}>
-        <Button
-          active={value === "instagram"}
-          onClick={() => setSocialMedia("instagram")}
-        >
-          <FaInstagram size="42px" />
-          <p>Instagram</p>
-        </Button>
-      </motion.li>
-      <motion.li variants={listItemVariant}>
-        <Button
-          active={value === "tiktok"}
-          onClick={() => setSocialMedia("tiktok")}
-        >
-          <SiTiktok size="42px" />
-          <p>Tiktok</p>
-        </Button>
-      </motion.li>
-      <motion.li variants={listItemVariant}>
-        <Button
-          active={value === "facebook"}
-          onClick={() => setSocialMedia("facebook")}
-        >
-          <FaFacebookSquare size="42px" />
-          <p>Facebook</p>
-        </Button>
-      </motion.li>
-      <motion.li variants={listItemVariant}>
-        <Button
-          active={value === "twitter"}
-          onClick={() => setSocialMedia("twitter")}
-        >
-          <FaTwitter size="42px" />
-          <p>Twitter</p>
-        </Button>
-      </motion.li>
-      <motion.li variants={listItemVariant}>
-        <Button
-          active={value === "others"}
-          onClick={() => setSocialMedia("others")}
-        >
-          <BsThreeDots size="42px" />
-          <p>Outros</p>
-        </Button>
-      </motion.li>
+      {socialMedias.map(({ id, label, icon }) => (
+        <motion.li key={id} variants={listItemVariant}>
+          <Button
+            active={value === id}
+            onClick={() => setSocialMedia(id)}
+          >
+            {icon}
+            <p>{label}</p>
+          </Button>
+        </motion.li>
+      ))}
     </Wrapper>
   );
 };
