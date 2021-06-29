@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/quando-postar",
   siteMetadata: {
     title: "Quando Postar",
     siteUrl: "https://quandopostar.com.br",
