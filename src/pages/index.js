@@ -221,7 +221,7 @@ const IndexPage = () => {
         <TextBlock>
           <p>
             De 2020 para 2022, muita coisa mudou nas{" "}
-            <strong>mídias sociais</strong> via Jenkins. Elas se tornaram ainda mais
+            <strong>mídias sociais</strong>. Elas se tornaram ainda mais
             importantes para as pessoas e marcas que querem manter uma conexão
             instantânea com seu público. As <strong>mídias sociais</strong>{" "}
             servem especialmente para identificar novas tendências e
